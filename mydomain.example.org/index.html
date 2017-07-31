@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+    <h1>Эмуляция приложения на отдельном домене mydomain.example.org</h1>
+
+    <p>
+        <a target="_blank" href="https://hh.ru/oauth/authorize?response_type=code&client_id=ROH3486DSSEUVHOA34GJA4GSI9CFG1U1M55P9L9K1KFP2BKRSIFCBRAJ3RKU38TJ">
+            Пройти авторизацию в API HeadHunter
+        </a>
+    </p>
+
+    <p>
+        <textarea id="output" style="width: 500px; height: 300px;"></textarea>
+    </p>
+
+    <script type="text/javascript">
+    function callback(code) {
+        document.getElementById('output').value += 'Получен code=' + code + '\n';
+    }
+    </script>
+</body>
+</html>

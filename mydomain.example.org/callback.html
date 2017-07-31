@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+    <h1>Пример страницы с callback</h1>
+    <p>
+        В реальности здесь
+        <a href="https://github.com/hhru/api/blob/master/docs/authorization.md#get-authorization_code">
+            при получении authorization_code
+        </a>,
+        нужно было бы на серверной части сделать POST запрос в API HH для получения access-токена,
+        а затем передать данный токен через javascript вызов в исходную страницу.
+    </p>
+
+    <p>
+        <button id="emulate">Сэмулировать возврат данных</button>
+    </p>
+
+    <script type="text/javascript">
+    function emulate(e) {
+        if (e) { e.preventDefault(); }
+        var authorization_code = getParameterByName('code') || 'unknown';
+        console.info('Emulate callback with: code=' + authorization_code);
+        opener.callback(authorization_code);
+        window.close();
+    }
+
+    // copy-pasted from https://stackoverflow.com/a/5158301
+    function getParameterByName(name) {
+        var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+        return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+    }
+
+    function init() {
+        var form = document.getElementById('emulate');
+        form.addEventListener('click', emulate);
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
